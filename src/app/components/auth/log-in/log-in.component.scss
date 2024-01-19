@@ -1,0 +1,19 @@
+.row {
+  height: 100vh;
+  .content {
+    min-height: 50vh;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    h1 {
+      color: white;
+    }
+  }
+}
+:host ::ng-deep .p-inputtext {
+  width: 100%;
+  display: block;
+}
+:host ::ng-deep .p-button {
+  padding: 10px;
+  border-radius: 5px;
+}

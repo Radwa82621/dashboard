@@ -1,0 +1,11 @@
+.row {
+  height: 100vh;
+  .content {
+    min-height: 75vh;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    h1 {
+      color: white;
+    }
+  }
+}

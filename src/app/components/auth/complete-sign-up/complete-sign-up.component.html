@@ -1,0 +1,193 @@
+<div class="container">
+  <div class="row gy-4">
+    <div
+      class="col-md-8 mx-auto d-flex align-items-center justify-content-center"
+    >
+      <div class="content rounded px-4 w-100">
+        <div class="header d-flex justify-content-center mt-3 mb-4">
+          <h1>complete register</h1>
+        </div>
+        <form
+          [formGroup]="completeRegisterForm"
+          (ngSubmit)="completeRegister()"
+        >
+          <!-- [formGroup]="complete-registerForm" (ngSubmit)="register(registerForm)" -->
+          <div class="row mb-4 h-100 gy-4">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fName"
+                  placeholder="first name"
+                  formControlName="fName"
+                  [ngClass]="{
+                    'is-valid': !fName?.errors && fName?.dirty,
+                    'is-invalid': fName?.errors && fName?.dirty
+                  }"
+                />
+                <label for="fName"> your first name</label>
+                <ul
+                  class="list-unstyled alert alert-danger my-3"
+                  *ngIf="fName?.errors && fName?.dirty"
+                >
+                  <li class="h3" *ngIf="fName?.getError('required')">
+                    Required
+                  </li>
+                  <li class="h3" *ngIf="fName?.getError('minlength')">
+                    min 3 characters
+                  </li>
+                  <li class="h3" *ngIf="fName?.getError('maxlength')">
+                    max 8 characters
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lName"
+                  placeholder="first name"
+                  formControlName="lName"
+                  [ngClass]="{
+                    'is-valid': !lName?.errors && lName?.dirty,
+                    'is-invalid': lName?.errors && lName?.dirty
+                  }"
+                />
+                <label for="lName"> your last name</label>
+                <ul
+                  class="list-unstyled alert alert-danger my-3"
+                  *ngIf="lName?.errors && lName?.dirty"
+                >
+                  <li class="h3" *ngIf="lName?.getError('required')">
+                    Required
+                  </li>
+                  <li class="h3" *ngIf="lName?.getError('minlength')">
+                    min 3 characters
+                  </li>
+                  <li class="h3" *ngIf="lName?.getError('maxlength')">
+                    max 8 characters
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-floating mb-4">
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              placeholder="your phone number"
+              formControlName="phone"
+              [ngClass]="{
+                'is-valid': !phone?.errors && phone?.dirty,
+                'is-invalid': phone?.errors && phone?.dirty
+              }"
+            />
+            <label for="phone"> your phone number</label>
+            <ul
+              class="list-unstyled alert alert-danger my-3"
+              *ngIf="phone?.errors && phone?.dirty"
+            >
+              <li class="h3" *ngIf="phone?.getError('required')">Required</li>
+
+              <li class="h3" *ngIf="phone?.getError('pattern')">
+                invalid email pattern
+              </li>
+            </ul>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="date"
+              class="form-control"
+              id="dateOfBirth"
+              placeholder="date of birth"
+              formControlName="dateOfBirth"
+              [ngClass]="{
+                'is-valid': !dateOfBirth?.errors && dateOfBirth?.dirty,
+                'is-invalid': dateOfBirth?.errors && dateOfBirth?.dirty
+              }"
+            />
+            <label for="dateOfBirth"> your date of birth</label>
+            <ul
+              class="list-unstyled alert alert-danger my-3"
+              *ngIf="dateOfBirth?.errors && dateOfBirth?.dirty"
+            >
+              <li class="h3" *ngIf="dateOfBirth?.getError('required')">
+                Required
+              </li>
+            </ul>
+          </div>
+
+          <div class="row mb-4 h-100 gy-4">
+            <div class="col-6">
+              <div class="form-check bg-white py-3 rounded ps-5">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  formControlName="gender"
+                  value="female"
+                />
+                <label class="form-check-label" for="female"> female </label>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-check bg-white py-3 rounded ps-5">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="male"
+                  formControlName="gender"
+                  value="male"
+                />
+                <label class="form-check-label" for="male"> male </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-floating mb-4">
+            <input
+              class="form-control"
+              type="file"
+              (change)="onFileChange($event)"
+              accept="image/*"
+              id="pic"
+            />
+            <label for="pic"> your profile picture</label>
+          </div>
+
+          <div class="row h-100 my-4">
+            <div class="overflow-hidden col-md-6 mx-auto">
+              <p
+                *ngIf="completeRegisterForm.get('userPic')?.value"
+                class="w-50"
+              >
+                profile picture preview
+              </p>
+              <img
+                [src]="completeRegisterForm.get('userPic')?.value"
+                alt="Image Preview"
+                *ngIf="completeRegisterForm.get('userPic')?.value"
+                class="w-50 rounded-circle"
+              />
+            </div>
+          </div>
+
+          <button
+            class="btn btn-lg d-block mx-auto btn-success mb-4"
+            [disabled]="completeRegisterForm.invalid"
+          >
+            complete register
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="row">
+    <div
+      class="col-md-8 mx-auto d-flex align-items-center justify-content-center"
+    >
+      <div class="content rounded px-4 w-100">
+        <div class="header d-flex justify-content-center mt-3 mb-4">
+          <h1>register</h1>
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+          <div class="form-floating mb-4">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="name"
+              formControlName="name"
+              [ngClass]="{
+                'is-valid': !Name?.errors && Name?.dirty,
+                'is-invalid': Name?.errors && Name?.dirty
+              }"
+            />
+            <label for="name"> your name</label>
+
+            <ul
+              class="list-unstyled alert alert-danger my-3"
+              *ngIf="Name?.errors && Name?.dirty"
+            >
+              <li class="h3" *ngIf="Name?.getError('required')">Required</li>
+              <li class="h3" *ngIf="Name?.getError('minlength')">
+                min 3 characters
+              </li>
+              <li class="h3" *ngIf="Name?.getError('maxlength')">
+                max 8 characters
+              </li>
+            </ul>
+          </div>
+
+          <div class="form-floating mb-4">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="email"
+              formControlName="email"
+              [ngClass]="{
+                'is-valid': !email?.errors && email?.dirty,
+                'is-invalid': email?.errors && email?.dirty
+              }"
+            />
+            <label for="email"> your email</label>
+
+            <ul
+              class="list-unstyled alert alert-danger my-3"
+              *ngIf="email?.errors && email?.dirty"
+            >
+              <li class="h3" *ngIf="email?.getError('required')">Required</li>
+
+              <li class="h3" *ngIf="email?.getError('email')">
+                invalid email pattern
+              </li>
+            </ul>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="password"
+              formControlName="password"
+              [ngClass]="{
+                'is-valid': !password?.errors && password?.dirty,
+                'is-invalid': password?.errors && password?.dirty
+              }"
+            />
+            <label for="password"> your password</label>
+
+            <ul
+              class="list-unstyled alert alert-danger"
+              *ngIf="password?.errors && password?.dirty"
+            >
+              <li class="h3" *ngIf="password?.getError('required')">
+                Required
+              </li>
+              <li class="h3" *ngIf="password?.getError('pattern')">
+                invalid password patter
+              </li>
+            </ul>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="password"
+              class="form-control"
+              id="rePassword"
+              placeholder="rePassword"
+              formControlName="rePassword"
+              [ngClass]="{
+                'is-valid': !rePassword?.errors && rePassword?.dirty,
+                'is-invalid': rePassword?.errors && rePassword?.dirty
+              }"
+            />
+            <label for="rePassword">confirm password</label>
+
+            <ul
+              class="list-unstyled alert alert-danger"
+              *ngIf="
+                (rePassword?.errors && rePassword?.dirty) ||
+                registerForm.hasError('notMatch')
+              "
+            >
+              <li class="h3" *ngIf="rePassword?.getError('required')">
+                Required
+              </li>
+              <li class="h3" *ngIf="rePassword?.getError('pattern')">
+                invalid repassword pattern
+              </li>
+              <li
+                class="h3"
+                *ngIf="
+                  registerForm.hasError('notMatch') &&
+                  !rePassword?.getError('pattern')
+                "
+              >
+                repassword didnot match password
+              </li>
+            </ul>
+          </div>
+          <button
+            class="btn btn-lg d-block mx-auto btn-success"
+            [disabled]="registerForm.invalid"
+          >
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
